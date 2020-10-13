@@ -6,3 +6,5 @@ This package implemented MORST, a fast and powerful test that is designed to be 
 library(devtools)
 devtools::install_github("yaowuliu/MORST")
 ```
+## Usage
+Please see the [MORST user manual](https://github.com/yaowuliu/MORST/blob/master/doc/MORST_manual.pdf).
