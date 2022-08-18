@@ -17,6 +17,10 @@ Get_CriVals <- function(tau_pool, eg_values, alpha) {
     .Call(`_MORST_Get_CriVals`, tau_pool, eg_values, alpha)
 }
 
+Get_CriVals <- function(tau_pool, eg_values, alpha) {
+    .Call(`_MORST_Get_CriVals`, tau_pool, eg_values, alpha)
+}
+
 Davies <- function(q, lambda, lim = 10000L, acc = 0.0001) {
     .Call(`_MORST_Davies`, q, lambda, lim, acc)
 }
