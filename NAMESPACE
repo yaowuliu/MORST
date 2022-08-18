@@ -2,4 +2,4 @@
 importFrom(Rcpp, evalCpp)
 useDynLib(MORST, .registration = TRUE)
 
-export(MORST_glm,Null_model_glm,tau_c,Get_Q_pval,SetBasedTests)
+export(MORST_glm,Null_model_glm,tau_c,Get_Q_pval,SetBasedTests,Get_CriVals)
