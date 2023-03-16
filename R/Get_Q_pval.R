@@ -61,6 +61,9 @@ Get_Q_pval<-function(Q,w){
     }
     # if good, then return
     if (pval>1e-05){
+        if (pval >= 1){  ### avoid getting pval >= 1 in davies's method (rarely happens!)
+            pval = 1 - 1e-06
+        }
         return(pval)
     }
 
