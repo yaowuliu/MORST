@@ -35,7 +35,7 @@ If you want to use your own weights, please use the “weights” parameter. It 
 
 \item{n.points}{number of grid points used when \emph{tau.type == "minimax"}. See \code{\link{tau_c}} for details.}
 
-\item{mac.thresh}{a threshold of the minor allele count (MAC) that is used in the ACAT-V test. SNPs with MAC less than this thrshold will be frist aggregated by the Burden test in ACAT-V.}
+\item{mac.thresh}{a threshold of the minor allele count (MAC) that is used in the ACAT-V test. SNPs with MAC less than this threshold will be first aggregated by the Burden test in ACAT-V.}
 }
 \value{
 The p-values of Burden, SKAT, ACAT-V and MORST under under one or multiple choices of weights.
@@ -47,7 +47,7 @@ Calculate the Burden, SKAT, ACAT-V and MORST p-values under one or multiple sets
 If you want to fit a GLM, please use the \code{\link{Null_model_glm}} function to obtain the null model \emph{obj}.
 If you have a kinship matrix/GRM and would like to fit a GLMM, please use the the function \code{\link{glmmkin}} from the the \code{\link{GMMAT}} package. Both dense and sparse kinship/GRM can be used.
 
-The ACAT-V p-value might be slightly different from the result from the \code{\link{ACAT_V}} function in the \code{\link{ACAT}} package. This is because the variant-level p-values are calculated using slighly different methods.
+The ACAT-V p-value might be slightly different from the result from the \code{\link{ACAT_V}} function in the \code{\link{ACAT}} package. This is because the variant-level p-values are calculated using slightly different methods.
 
 While the \emph{alpha} parameter is suggested to be the significance level, practically there is no need to set \emph{alpha} less than 1e-08.
 In most situations, the MORST p-values would only have negligible difference for values of \emph{alpha} less than 1e-06.
