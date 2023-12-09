@@ -1,14 +1,14 @@
 Package: MORST
 Type: Package
 Title: Minimax Optimal Ridge-type Set Test
-Version: 0.8.0
+Version: 0.9.0
 Author: Yaowu Liu
 Maintainer: Yaowu Liu <yaowuliu615@gmail.com>
-Description: This package implemented MORST, a fast and powerful test that is designed to be power-robust to the strength of signals. While mainly motivated from the linear regression setting, MORST is a generic test and has several versions. This package implemented the score version of MORST in GLMs and a specific function of MORST tailored to genetic association studies. At the core of MORST, it is the choice of the ridge-type parameter tau_c, which is implemented in this package. With tau_c, one can easily develop other versions of MORST or adapt MROST to other applications.
+Description: This package implemented MORST, a fast and powerful test that is designed to be power-robust to the strength of signals. While mainly motivated from the linear regression setting, MORST is a generic test and has several versions. This package implemented the score version of MORST in GLMs and a specific function of MORST tailored to genetic association studies. At the core of MORST, it is the choice of the ridge-type parameter tau_c, which is implemented in this package. With tau_c, one can easily develop other versions of MORST or adapt MORST to other applications. In addition, this package also implemented the Burden, SKAT and ACAT-V tests, and their respective ensemble versions, e.g., the ensemble Burden test.
 Depends: R (>= 3.2.0)
 License: GPLv3
 Encoding: UTF-8
 LazyData: true
 Imports: Rcpp (>= 1.0.1), Matrix
 LinkingTo: Rcpp
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
