@@ -11,7 +11,7 @@
 #' @param weights.beta a numeric vector/matrix of parameters for the beta weights for the weighted kernels. If it is a matrix, each column corresponds to one set of the beta-weights parameters.
 #'  If you want to use your own weights, please use the “weights” parameter. It will be ignored if “weights” parameter is not null.
 #' @param weights a numeric vector/matrix of weights for the SNPs. If it is a matrix, each column corresponds to one set of weights. When it is NULL, the beta weight with the “weights.beta” parameter is used.
-#' @param mac.thresh a threshold of the minor allele count (MAC) that is used in the ACAT-V test. SNPs with MAC less than this thrshold will be frist aggregated by the Burden test in ACAT-V.
+#' @param mac.thresh a threshold of the minor allele count (MAC) that is used in the ACAT-V test. SNPs with MAC less than this threshold will be first aggregated by the Burden test in ACAT-V.
 #' @param tau.type either "minimax" or "approx". See \code{\link{tau_c}} for details.
 #' @param target_power a value that is used when \emph{tau.type == "approx"}. See \code{\link{tau_c}} for details.
 #' @param n.points number of grid points used when \emph{tau.type == "minimax"}. See \code{\link{tau_c}} for details.
@@ -20,7 +20,7 @@
 #' @details If you want to fit a GLM, please use the \code{\link{Null_model_glm}} function to obtain the null model \emph{obj}.
 #' If you have a kinship matrix/GRM and would like to fit a GLMM, please use the the function \code{\link{glmmkin}} from the the \code{\link{GMMAT}} package. Both dense and sparse kinship/GRM can be used.
 #'
-#' The ACAT-V p-value might be slightly different from the result from the \code{\link{ACAT_V}} function in the \code{\link{ACAT}} package. This is because the variant-level p-values are calculated using slighly different methods.
+#' The ACAT-V p-value might be slightly different from the result from the \code{\link{ACAT_V}} function in the \code{\link{ACAT}} package. This is because the variant-level p-values are calculated using slightly different methods.
 #'
 #' While the \emph{alpha} parameter is suggested to be the significance level, practically there is no need to set \emph{alpha} less than 1e-08.
 #' In most situations, the MORST p-values would only have negligible difference for values of \emph{alpha} less than 1e-06.
@@ -47,7 +47,7 @@ SetBasedTests<-function(G,obj,alpha=1e-06,weights.beta=matrix(c(1,25,1,1),nrow =
         stop("obj is not calculated from MORST_NULL_MODEL or glmmkin!")
     }
     ##### check G
-    if (class(G)!= "matrix" & class(G)!="dgCMatrix" ){
+    if (!is.element("matrix",class(G)) & !is.element("dgCMatrix",class(G)) ){
         stop("G must be matrix or dgCMatrix!")
     }else{
         if (nrow(G)!=length(obj[["Y.res"]])){
@@ -57,6 +57,11 @@ SetBasedTests<-function(G,obj,alpha=1e-06,weights.beta=matrix(c(1,25,1,1),nrow =
 
     ### MAF
     mac<-Matrix::colSums(G)
+    if (sum(mac==0)>0){ ### remove SNPs with MAF=0
+        G = G[,mac>0,drop=FALSE]
+        mac<-Matrix::colSums(G)
+    }
+
     MAF<-mac/(2*dim(G)[1])
     p<-length(MAF)
     n<-length(obj[["Y.res"]])
