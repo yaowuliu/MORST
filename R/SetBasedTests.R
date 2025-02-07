@@ -50,9 +50,11 @@ SetBasedTests<-function(G,obj,alpha=1e-06,weights.beta=matrix(c(1,25,1,1),nrow =
     if (!is.element("matrix",class(G)) & !is.element("dgCMatrix",class(G)) ){
         stop("G must be matrix or dgCMatrix!")
     }else{
-        if (nrow(G)!=length(obj[["Y.res"]])){
+        if (class(obj)!="glmmkin"){
+            if (nrow(G)!=length(obj[["Y.res"]])){
             stop("The number of rows in G should be the same as the length of Y!")
-        }
+            }
+        }  
     }
 
     ### MAF
