@@ -81,9 +81,11 @@ EnsembleSetTests<-function(G,obj,B = 100,tests=c("Burden","SKAT","MORST"),weight
     if (!is.element("matrix",class(G)) & !is.element("dgCMatrix",class(G)) ){
         stop("G must be matrix or dgCMatrix!")
     }else{
-        if (nrow(G)!=length(obj[["Y.res"]])){
+        if (class(obj)!="glmmkin"){
+            if (nrow(G)!=length(obj[["Y.res"]])){
             stop("The number of rows in G should be the same as the length of Y!")
-        }
+            }
+        }  
     }
     ##### check tests
     for (test.name in tests){
